@@ -2,45 +2,45 @@ public class Length {
     private final double value;
     private final String unit;
 
-    public Length(double val, String uinnt) {
-        this.value = val;
-        this.unit = uinnt;
+    public Length(double value, String unit) {
+        this.value = value;
+        this.unit = unit;
     }
 
     public Length as(String u) {
-        Length len = this;
+        Length result = this;
         if (this.unit.equals("f")) {
             if (u.equals("yard")) {
-                len = new Length(this.value / 3, u);
+                result = new Length(this.value / 3, u);
             } else if (u.equals("inch")) {
-                len = new Length(this.value * 12, u);
+                result = new Length(this.value * 12, u);
             }
         }
 
         if (this.unit.equals("yard")) {
             if (u.equals("inch")) {
-                len = new Length(this.value * 36, u);
+                result = new Length(this.value * 36, u);
             } else if (u.equals("f")){
-                len = new Length(this.value * 3, u);
+                result = new Length(this.value * 3, u);
             }
         }
 
         if (this.unit.equals("inch")) {
             if (u.equals("f")) {
-                len = new Length(this.value / 12, u);
+                result = new Length(this.value / 12, u);
             } else if (u.equals("yard")) {
-                len = new Length(this.value / 36, u);
+                result = new Length(this.value / 36, u);
             }
         }
 
-        return len;
+        return result;
     }
 
-    public double getVal() {
+    public double getValue() {
         return this.value;
     }
 
-    public String getUinnt() {
+    public String getUnit() {
         return this.unit;
     }
 }
