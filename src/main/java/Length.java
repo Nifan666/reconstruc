@@ -2,34 +2,42 @@ public class Length {
     private final double value;
     private final String unit;
 
+    /**
+     * 这一步是为了test程序也能够使用 字符串常量
+     */
+    public static final String FOOT = "f";
+    public static final String YARD = "yard";
+    public static final String INCH = "inch";
+
     public Length(double value, String unit) {
         this.value = value;
         this.unit = unit;
     }
 
-    public Length as(String u) {
+    public Length as(String targetUnit) {
         Length result = this;
-        if (this.unit.equals("f")) {
-            if (u.equals("yard")) {
-                result = new Length(this.value / 3, u);
-            } else if (u.equals("inch")) {
-                result = new Length(this.value * 12, u);
+
+        if (this.unit.equals(Length.FOOT)) {
+            if (targetUnit.equals(Length.YARD)) {
+                result = new Length(this.value / 3, targetUnit);
+            } else if (targetUnit.equals(Length.INCH)) {
+                result = new Length(this.value * 12, targetUnit);
             }
         }
 
-        if (this.unit.equals("yard")) {
-            if (u.equals("inch")) {
-                result = new Length(this.value * 36, u);
-            } else if (u.equals("f")){
-                result = new Length(this.value * 3, u);
+        if (this.unit.equals(Length.YARD)) {
+            if (targetUnit.equals(Length.INCH)) {
+                result = new Length(this.value * 36, targetUnit);
+            } else if (targetUnit.equals(Length.FOOT)){
+                result = new Length(this.value * 3, targetUnit);
             }
         }
 
-        if (this.unit.equals("inch")) {
-            if (u.equals("f")) {
-                result = new Length(this.value / 12, u);
-            } else if (u.equals("yard")) {
-                result = new Length(this.value / 36, u);
+        if (this.unit.equals(Length.INCH)) {
+            if (targetUnit.equals(Length.FOOT)) {
+                result = new Length(this.value / 12, targetUnit);
+            } else if (targetUnit.equals(Length.YARD)) {
+                result = new Length(this.value / 36, targetUnit);
             }
         }
 
